@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { ZammadConfig, Ticket, TicketListOptions, User, Group } from '../types';
+import { ZammadConfig, Ticket, TicketListOptions, User, Group, Article } from '../types';
 
 export class ZammadClient {
   private client: AxiosInstance;
@@ -42,6 +42,11 @@ export class ZammadClient {
 
   async searchTickets(query: string): Promise<Ticket[]> {
     const response = await this.client.get<Ticket[]>(`/tickets/search?query=${encodeURIComponent(query)}`);
+    return response.data;
+  }
+
+  async getTicketArticles(ticketId: number): Promise<Article[]> {
+    const response = await this.client.get<Article[]>(`/ticket_articles/by_ticket/${ticketId}`);
     return response.data;
   }
 

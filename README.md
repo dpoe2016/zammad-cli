@@ -89,14 +89,36 @@ zm tickets list --page 2 --limit 20
 zm tickets list --expand
 ```
 
-**Get a specific ticket:**
+**Get a specific ticket (with all articles):**
 ```bash
 zm tickets get <ticket-id>
 ```
 
-**Search tickets:**
+**Search tickets (advanced):**
 ```bash
-zm tickets search "keyword"
+# Search by keyword in title or body
+zm tickets search --query "keyword"
+
+# Search by state
+zm tickets search --state "open"
+
+# Search by priority
+zm tickets search --priority "high"
+
+# Search by customer
+zm tickets search --customer "user@example.com"
+
+# Combine multiple filters
+zm tickets search --query "bug" --state "open" --priority "high"
+
+# Show detailed results
+zm tickets search --query "issue" --detailed
+
+# Limit results
+zm tickets search --state "open" --limit 10
+
+# Search by group and owner
+zm tickets search --group "Support" --owner "admin@example.com"
 ```
 
 **Create a ticket:**

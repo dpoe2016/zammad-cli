@@ -51,3 +51,24 @@ export interface Group {
   updated_at: string;
   [key: string]: any;
 }
+
+export interface Article {
+  id: number;
+  ticket_id: number;
+  type_id: number;
+  sender_id: number;
+  from: string;
+  to?: string;
+  cc?: string;
+  subject?: string;
+  body: string;
+  content_type: string;
+  internal: boolean;
+  created_by_id: number;
+  created_at: string;
+  updated_at: string;
+  type?: string;
+  sender?: string;
+  created_by?: string;
+  [key: string]: any;
+}
