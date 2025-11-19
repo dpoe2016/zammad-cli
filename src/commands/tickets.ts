@@ -200,6 +200,7 @@ export function ticketCommands(program: Command) {
     .description('Create a new ticket')
     .requiredOption('-t, --title <title>', 'Ticket title')
     .requiredOption('-g, --group <group>', 'Group ID')
+    .option('-b, --body <body>', 'Ticket body/description')
     .option('-c, --customer <customer>', 'Customer ID')
     .option('-p, --priority <priority>', 'Priority ID', '2')
     .option('-s, --state <state>', 'State ID', '1')
@@ -217,6 +218,15 @@ export function ticketCommands(program: Command) {
 
         if (options.customer) {
           ticketData.customer_id = parseInt(options.customer);
+        }
+
+        if (options.body) {
+          ticketData.article = {
+            subject: options.title,
+            body: options.body,
+            type: 'note',
+            internal: false,
+          };
         }
 
         const ticket = await client.createTicket(ticketData);
